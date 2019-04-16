@@ -120,13 +120,13 @@ function display(year, ethni) {
     var theYear = data[i][8];
     var theEthni = data[i][10];
     if (theYear == year && theEthni.charAt(0) == ethni.charAt(0)) {
-      var gender = data[i][9];
-      // only go through top 3
-      if (i == 0 || (gender == "FEMALE" && data[i - 1][9] == "MALE") || (gender == "MALE" && data[i - 1][9] == "FEMALE") || theEthni != data[i - 1][10]) {
-        for (let j = 1; j <= 3; j++) { // get the top 3 data;     
-          var rank = j;
+      // only go through top 3 for each ethnicity
+      if (i == 0 || theEthni != data[i - 1][10]) {
+        for (let j = 1; j <= 3; j++) { // get the top 3 data; 
+          var gender = data[i][9];
           var name = data[i + j - 1][11];
           var count = data[i + j - 1][12];
+          var rank = j;
           if (gender == "FEMALE") { // pink bars for females
             fill(255, 0, 150);
             rank = rank * 100 + (rank - 1) * 50;
